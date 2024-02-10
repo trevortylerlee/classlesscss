@@ -1,0 +1,415 @@
+---
+import Nav from "../components/Nav.astro";
+const { frontmatter } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href={frontmatter.cdn} />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{frontmatter.title}</title>
+  </head>
+  <body>
+    <>
+      <Nav />
+      <h1><a href={frontmatter.link}>{frontmatter.title}</a></h1>
+      <nav>
+        <ul>
+          <li><a href="#example">Blog Post Example</a></li>
+          <li><a href="#details">Details</a></li>
+          <li><a href="#progress">Progress Bar</a></li>
+          <li><a href="#meter">Meter</a></li>
+          <li><a href="#mark">Mark (Highlight)</a></li>
+          <li><a href="#dialog">Dialog Box (Modal Window)</a></li>
+          <li><a href="#audio">Audio</a></li>
+          <li><a href="#video">Video</a></li>
+          <li><a href="#form">Forms</a></li>
+          <li><a href="#table">Table</a></li>
+          <li><a href="#ordered">Ordered List</a></li>
+          <li><a href="#unordered">Unordered List</a></li>
+          <li><a href="#description">Description List</a></li>
+          <li><a href="#pre">Preformated Text</a></li>
+          <li><a href="#small">Small</a></li>
+          <li><a href="#blockquote">Blockquote</a></li>
+          <li><a href="#supsub">Superscript and Subscript</a></li>
+          <li><a href="#sample">Sample Output</a></li>
+          <li><a href="#keyboard">Keyboard Input</a></li>
+          <li><a href="#definition">Definition</a></li>
+          <li><a href="#abbreviation">Abbreviation and Acronyms</a></li>
+          <li><a href="#strong">Strong and Emphasis</a></li>
+          <li><a href="#headings">Headings</a></li>
+        </ul>
+      </nav>
+      <hr />
+      <article>
+        <header>
+          <h2 id="example">Blog Post Example</h2>
+          <p>
+            By <strong>Author Name</strong> - <time datetime="YYYY-MM-DD"
+              >Date Posted</time
+            >
+          </p>
+        </header>
+        <section>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non
+            risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing
+            nec, ultricies sed, dolor. Cras elementum ultrices diam.
+          </p>
+          <p>
+            Maecenas ligula massa, varius a, semper congue, euismod non, mi.
+            Proin porttitor, orci nec nonummy molestie, enim est eleifend mi,
+            non fermentum diam nisl sit amet erat.
+          </p>
+        </section>
+        <figure>
+          <img src="path/to/image.jpg" alt="Image Description" />
+          <figcaption>Caption for the image.</figcaption>
+        </figure>
+        <section>
+          <p>
+            Duis arcu tortor, suscipit eget, imperdiet nec, imperdiet iaculis,
+            ipsum. Sed aliquam ultrices mauris. Integer ante arcu, accumsan a,
+            consectetuer eget, posuere ut, mauris.
+          </p>
+        </section>
+      </article>
+      <hr />
+      <h2 id="details">
+        <a href="https://developer.mozilla.org/docs/Web/HTML/Element/details"
+          >Details</a
+        >
+      </h2>
+      <details>
+        <summary
+          >This is the summary for the <code>&lt;details&gt;</code> element. <strong
+            >Click or tap to reveal its details</strong
+          >.</summary
+        >
+        <p>
+          These are the details for the summary, and an example of how <abbr
+            title="Hypertext Markup Language">HTML</abbr
+          > can be interactive without using <abbr title="Cascading Stylesheets"
+            >CSS</abbr
+          > and JavaScript.
+        </p>
+      </details>
+      <h2 id="progress">
+        <a href="https://developer.mozilla.org/docs/Web/HTML/Element/progress"
+          >Progress Bar</a
+        >
+      </h2>
+      <label for="file">Downloading progress:</label>
+      <progress id="file" value="32" max="100"> 32% </progress>
+      <h2 id="meter">
+        <a href="https://developer.mozilla.org/docs/Web/HTML/Element/meter"
+          >Meter</a
+        >
+      </h2>
+      <p>
+        75% of tickets have been sold: <meter min="0" max="100" value="75"
+        ></meter>
+      </p>
+      <h2 id="mark">
+        <a href="https://developer.mozilla.org/docs/Web/HTML/Element/mark"
+          >Mark</a
+        >
+      </h2>
+      <p><mark>The <code>&lt;mark&gt;</code> element highlights text.</mark></p>
+      <h2 id="dialog">
+        <a href="https://developer.mozilla.org/docs/Web/HTML/Element/dialog"
+          >Dialog Box</a
+        >
+      </h2>
+      <dialog id="favDialog">
+        <form method="dialog">
+          <p>This is an unstyled <code>&lt;dialog&gt;</code> box modal</p>
+          <p><button>Close Dialog Box</button></p>
+        </form>
+      </dialog>
+      <button id="updateDetails">View Dialog Box</button>
+      <script type="text/javascript">
+        const updateButton = document.getElementById("updateDetails");
+        if (typeof favDialog.showModal !== "function") {
+          favDialog.hidden = true;
+        }
+        updateButton.addEventListener("click", () => {
+          if (typeof favDialog.showModal === "function") {
+            favDialog.showModal();
+          }
+        });
+      </script>
+      <h2 id="audio">
+        <a href="https://developer.mozilla.org/docs/Web/HTML/Element/audio"
+          >Audio</a
+        >
+      </h2>
+      <p>
+        An MP3 using the <code>&lt;audio&gt;</code> element and the <code
+          >&lt;controls&gt;</code
+        > attribute.
+      </p>
+      <p>
+        <audio controls src="/wilhelm.mp3"></audio>
+        <h2 id="video">
+          <a href="https://developer.mozilla.org/docs/Web/HTML/Element/video"
+            >Video</a
+          >
+        </h2>
+        <p>
+          An MP4 using the <code>&lt;video&gt;</code> element and the <code
+            >&lt;controls&gt;</code
+          > attribute.
+        </p>
+        <p>
+          <video controls src="/sw.mp4" width="640px" height="480px"></video>
+          <h2 id="form">
+            <a href="https://developer.mozilla.org/docs/Web/HTML/Element/form"
+              >Forms</a
+            >
+          </h2>
+          <form>
+            <fieldset>
+              <legend>Radio</legend>
+              <input type="radio" id="choice-1" name="choice" value="1" />
+              <label for="choice-1">Choice 1</label><br />
+              <input type="radio" id="choice-2" name="choice" value="2" />
+              <label for="choice-2">Choice 2</label><br />
+              <input type="radio" id="choice-3" name="choice" value="3" />
+              <label for="choice-3">Choice 3</label>
+            </fieldset>
+            <fieldset>
+              <legend>Select</legend>
+              <select>
+                <option>Option 1</option>
+                <option>Option 2</option>
+                <option>Option 3</option>
+              </select>
+            </fieldset>
+            <fieldset>
+              <legend>Checkbox</legend>
+              <input
+                type="checkbox"
+                id="check-1"
+                name="check-1"
+                value="check1"
+              />
+              <label for="check-1">Check 1</label><br />
+              <input
+                type="checkbox"
+                id="check-2"
+                name="check-2"
+                value="check2"
+              />
+              <label for="check-2">Check 2</label><br />
+              <input
+                type="checkbox"
+                id="check-3"
+                name="check-3"
+                value="check3"
+              />
+              <label for="check-3">Check 3</label>
+            </fieldset>
+            <fieldset>
+              <legend>Text Input</legend>
+              <p><input placeholder="text" type="text" /></p>
+              <textarea placeholder="textarea" cols="40" rows="6"></textarea>
+            </fieldset>
+          </form>
+          <h2 id="table">
+            <a href="https://developer.mozilla.org/docs/Web/HTML/Element/table"
+              >Table</a
+            >
+          </h2>
+          <p>What an unstyled <code>&lt;table&gt;</code> looks like:</p>
+          <table>
+            <tr>
+              <th>Heading</th>
+              <th>Heading</th>
+              <th>Heading</th>
+              <th>Heading</th>
+              <th>Heading</th>
+              <th>Heading</th>
+            </tr>
+            <tr>
+              <td>Data</td>
+              <td>Data</td>
+              <td>Data</td>
+              <td>Data</td>
+              <td>Data</td>
+              <td>Data</td>
+            </tr>
+            <tr>
+              <td>Data</td>
+              <td>Data</td>
+              <td>Data</td>
+              <td>Data</td>
+              <td>Data</td>
+              <td>Data</td>
+            </tr>
+          </table>
+          <h2 id="ordered">
+            <a href="https://developer.mozilla.org/docs/Web/HTML/Element/ol"
+              >Ordered List</a
+            >
+          </h2>
+          <ol>
+            <li>item</li>
+            <li>item</li>
+            <li>item</li>
+          </ol>
+          <h2 id="unordered">
+            <a href="https://developer.mozilla.org/docs/Web/HTML/Element/ul"
+              >Unordered List</a
+            >
+          </h2>
+          <ul>
+            <li>item</li>
+            <li>item</li>
+            <li>item</li>
+          </ul>
+          <h2 id="description">
+            <a href="https://developer.mozilla.org/docs/Web/HTML/Element/dl"
+              >Description List</a
+            >
+          </h2>
+          <dl>
+            <dt>group 1</dt>
+            <dd>term</dd>
+            <dd>term</dd>
+            <dd>term</dd>
+            <dt>group 2</dt>
+            <dd>term</dd>
+            <dd>term</dd>
+            <dd>term</dd>
+          </dl>
+          <h2 id="pre">
+            <a href="https://developer.mozilla.org/docs/Web/HTML/Element/pre"
+              >Preformatted Text</a
+            >
+          </h2>
+          <pre>
+Preformatted text
+  displays
+    exactly
+      how
+        you
+          save
+            it in the <abbr title="Hypertext Markup Language">HTML</abbr>
+        spaces, line breaks, and all</pre>
+          <h2 id="small">
+            <a href="https://developer.mozilla.org/docs/Web/HTML/Element/small"
+              >Small</a
+            >
+          </h2>
+          <p>
+            <small
+              >Sometimes it's nice to comment about something on the side.</small
+            >
+          </p>
+          <h2 id="blockquote">
+            <a
+              href="https://developer.mozilla.org/docs/Web/HTML/Element/blockquote"
+              >Blockquote</a
+            >
+          </h2>
+          <blockquote>
+            <p>
+              This is a blockquote. The only thing a blockquote does is indent
+              the text.
+            </p>
+          </blockquote>
+          <h2 id="supsub">
+            <a href="https://developer.mozilla.org/docs/Web/HTML/Element/sup"
+              >Superscript</a
+            > and <a
+              href="https://developer.mozilla.org/docs/Web/HTML/Element/sub"
+              >Subscript</a
+            >
+          </h2>
+          <p>
+            Sometimes you superscript<sup>⬆</sup> and other times you need subscript<sub
+              >⬇</sub
+            >.
+          </p>
+          <h2 id="sample">
+            <a href="https://developer.mozilla.org/docs/Web/HTML/Element/samp"
+              >Sample Output from Computer</a
+            >
+          </h2>
+          <p><samp>File not found. Press F1 to continue</samp></p>
+          <h2 id="keyboard">
+            <a href="https://developer.mozilla.org/docs/Web/HTML/Element/kbd"
+              >Keyboard Input</a
+            >
+          </h2>
+          <p>Press <kbd>Ctrl</kbd> + <kbd>C</kbd> to copy text (Windows).</p>
+          <p>Press <kbd>Cmd</kbd> + <kbd>C</kbd> to copy text (Mac OS).</p>
+          <h2 id="definition">
+            <a href="https://developer.mozilla.org/docs/Web/HTML/Element/dfn"
+              >Definition</a
+            >, <a href="https://developer.mozilla.org/docs/Web/HTML/Element/q"
+              >Inline Quote</a
+            >, and <a
+              href="https://developer.mozilla.org/docs/Web/HTML/Element/q#attr-cite"
+              >Citation</a
+            >
+          </h2>
+          <p>
+            A <dfn>coywolf</dfn> is <q
+              cite="https://en.wikipedia.org/wiki/Coywolf"
+              >an informal term for a canid hybrid descended from coyotes,
+              eastern wolves, gray wolves and dogs.</q
+            >
+          </p>
+          <p>
+            The <code>&lt;dfn&gt;</code> element italizes the word or phrase being
+            defined within the sentence or paragraph. The <code>&lt;q&gt;</code>
+            element inserts quotation marks and should have a <code
+              >&lt;cite&gt;</code
+            > attribute that points to the page where the quote came from.
+          </p>
+          <h2 id="abbreviation">
+            <a href="https://developer.mozilla.org/docs/Web/HTML/Element/abbr"
+              >Abbreviations and Acronyms</a
+            >
+          </h2>
+          <p>
+            <abbr title="search engine optimization">SEO</abbr> is an acronym for
+            search engine optimization and <abbr title="attention">ATTN</abbr> is
+            an abbreviation for attention, and both use the same <code
+              >&lt;abbr&gt;</code
+            > element.
+          </p>
+          <h2 id="strong">
+            <a href="https://developer.mozilla.org/docs/Web/HTML/Element/strong"
+              >Strong</a
+            > and <a
+              href="https://developer.mozilla.org/docs/Web/HTML/Element/em"
+              >Emphasis</a
+            >
+          </h2>
+          <p>
+            Sometimes you want your text to be <strong>strong</strong> and other
+            times you want to put <em>emphasis</em> on it.
+          </p>
+          <h2 id="headings">
+            <a
+              href="https://developer.mozilla.org/docs/Web/HTML/Element/Heading_Elements"
+              >Headings</a
+            >
+          </h2>
+          <h1 id="headings">Heading 1</h1>
+          <h2>Heading 2</h2>
+          <h3>Heading 3</h3>
+          <h4>Heading 4</h4>
+          <h5>Heading 5</h5>
+          <h6>Heading 6</h6>
+        </p>
+      </p>
+    </>
+  </body>
+</html>

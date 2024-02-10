@@ -1,0 +1,42 @@
+---
+const themes = await Astro.glob("../pages/themes/*.md");
+---
+
+<nav id="nav">
+  <a href="/">Home</a>
+  {
+    themes.map((theme) => (
+      <a
+        href={`/themes/${theme.frontmatter.title
+          .toLowerCase()
+          .replace(/[^\w\s]|_/g, "")
+          .replace(/\s+/g, " ")}`}
+      >
+        {theme.frontmatter.title}
+      </a>
+    ))
+  }
+</nav>
+
+<style>
+  #nav {
+    display: flex;
+    gap: 1rem;
+    justify-content: start;
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll("#nav a");
+    navLinks.forEach((link) => {
+      if (link.getAttribute("href") === currentPath) {
+        // @ts-ignore
+        link.style.outline = "1px dashed blue";
+        // @ts-ignore
+        link.style.fontWeight = "bold";
+      }
+    });
+  });
+</script>
