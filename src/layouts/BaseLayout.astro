@@ -6,43 +6,44 @@ const { frontmatter } = Astro.props;
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚫</text></svg>"
+    />
     <link rel="stylesheet" href={frontmatter.cdn} />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>{frontmatter.title}</title>
+    <title>{`${frontmatter.title}: classless css`}</title>
   </head>
   <body>
     <>
       <Nav />
       <h1><a href={frontmatter.link}>{frontmatter.title}</a></h1>
-      <nav>
-        <ul>
-          <li><a href="#example">Blog Post Example</a></li>
-          <li><a href="#details">Details</a></li>
-          <li><a href="#progress">Progress Bar</a></li>
-          <li><a href="#meter">Meter</a></li>
-          <li><a href="#mark">Mark (Highlight)</a></li>
-          <li><a href="#dialog">Dialog Box (Modal Window)</a></li>
-          <li><a href="#audio">Audio</a></li>
-          <li><a href="#video">Video</a></li>
-          <li><a href="#form">Forms</a></li>
-          <li><a href="#table">Table</a></li>
-          <li><a href="#ordered">Ordered List</a></li>
-          <li><a href="#unordered">Unordered List</a></li>
-          <li><a href="#description">Description List</a></li>
-          <li><a href="#pre">Preformated Text</a></li>
-          <li><a href="#small">Small</a></li>
-          <li><a href="#blockquote">Blockquote</a></li>
-          <li><a href="#supsub">Superscript and Subscript</a></li>
-          <li><a href="#sample">Sample Output</a></li>
-          <li><a href="#keyboard">Keyboard Input</a></li>
-          <li><a href="#definition">Definition</a></li>
-          <li><a href="#abbreviation">Abbreviation and Acronyms</a></li>
-          <li><a href="#strong">Strong and Emphasis</a></li>
-          <li><a href="#headings">Headings</a></li>
-        </ul>
-      </nav>
+      <ul>
+        <li><a href="#example">Blog Post Example</a></li>
+        <li><a href="#details">Details</a></li>
+        <li><a href="#progress">Progress Bar</a></li>
+        <li><a href="#meter">Meter</a></li>
+        <li><a href="#mark">Mark (Highlight)</a></li>
+        <li><a href="#dialog">Dialog Box (Modal Window)</a></li>
+        <li><a href="#audio">Audio</a></li>
+        <li><a href="#video">Video</a></li>
+        <li><a href="#form">Forms</a></li>
+        <li><a href="#table">Table</a></li>
+        <li><a href="#ordered">Ordered List</a></li>
+        <li><a href="#unordered">Unordered List</a></li>
+        <li><a href="#description">Description List</a></li>
+        <li><a href="#pre">Preformated Text</a></li>
+        <li><a href="#small">Small</a></li>
+        <li><a href="#blockquote">Blockquote</a></li>
+        <li><a href="#supsub">Superscript and Subscript</a></li>
+        <li><a href="#sample">Sample Output</a></li>
+        <li><a href="#keyboard">Keyboard Input</a></li>
+        <li><a href="#definition">Definition</a></li>
+        <li><a href="#abbreviation">Abbreviation and Acronyms</a></li>
+        <li><a href="#strong">Strong and Emphasis</a></li>
+        <li><a href="#headings">Headings</a></li>
+      </ul>
       <hr />
       <article>
         <header>
@@ -66,8 +67,14 @@ const { frontmatter } = Astro.props;
           </p>
         </section>
         <figure>
-          <img src="path/to/image.jpg" alt="Image Description" />
-          <figcaption>Caption for the image.</figcaption>
+          <img
+            src="/fallback.jpg"
+            alt="Lobby of the New Town Hall in Hanover"
+            id="potd"
+          />
+          <figcaption id="potd_caption">
+            Lobby of the New Town Hall in Hanover
+          </figcaption>
         </figure>
         <section>
           <p>
@@ -413,3 +420,58 @@ Preformatted text
     </>
   </body>
 </html>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    let today = new Date();
+    let year = today.getFullYear();
+    let month = String(today.getMonth() + 1).padStart(2, "0");
+    let day = String(today.getDate()).padStart(2, "0");
+    let imageKey = `image-${year}-${month}-${day}`;
+    let descriptionKey = `description-${year}-${month}-${day}`;
+    let artistNameKey = `artistName-${year}-${month}-${day}`;
+    let artistLinkKey = `artistLink-${year}-${month}-${day}`;
+
+    // Check if the image URL for today is already stored
+    const storedImageUrl = localStorage.getItem(imageKey);
+
+    if (!storedImageUrl) {
+      const url = `https://api.wikimedia.org/feed/v1/wikipedia/en/featured/${year}/${month}/${day}`;
+
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          if (data.image.thumbnail) {
+            const imageUrl = data.image.thumbnail.source;
+            const imageDescription = data.image.description.text;
+            const artistName = data.image.artist.text;
+            const artistLink = data.image.artist.user_page;
+            localStorage.setItem(imageKey, imageUrl); // Store the image URL with today's date as key
+            localStorage.setItem(descriptionKey, imageDescription);
+            localStorage.setItem(artistNameKey, artistName);
+            localStorage.setItem(artistLinkKey, artistLink);
+            document.getElementById("potd").src = imageUrl;
+            document.getElementById("potd").alt = imageDescription;
+            document.getElementById("potd_caption").innerHTML = `
+              ${imageDescription} Uploaded by <a href=${artistLink}>${artistName}</a>`;
+          }
+        })
+        .catch((error) => {
+          console.error("Failed to fetch Wikimedia Picture of the Day:", error);
+          // Note: No need to change the src here as it's already set to a fallback in the HTML
+        });
+    } else {
+      // Use the stored image URL
+      document.getElementById("potd").src = storedImageUrl;
+
+      const storedDescription = localStorage.getItem(descriptionKey);
+      const storedArtistName = localStorage.getItem(artistNameKey);
+      const storedArtistLink = localStorage.getItem(artistLinkKey);
+
+      document.getElementById("potd").alt = storedDescription;
+      document.getElementById("potd_caption").innerHTML = `
+              ${storedDescription} Uploaded by <a href=${storedArtistLink}>${storedArtistName}</a>`;
+    }
+  });
+</script>

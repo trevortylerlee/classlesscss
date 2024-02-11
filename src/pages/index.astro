@@ -5,13 +5,36 @@ import Nav from "../components/Nav.astro";
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚫</text></svg>"
+    />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>ihatecss</title>
+    <title>classless css</title>
   </head>
   <body>
     <Nav />
+    <div class="blurb">
+      <h1>
+        A collection of classless CSS themes, each displayed on a page with
+        common HTML elements.
+      </h1>
+      <p>By <a href="https://trevortylerlee.com">Trevor Lee</a></p>
+      <p>
+        <a href="https://sans.style/">HTML elements</a> from <a
+          href="https://henshaw.social/@jon">Jon Henshaw</a
+        > and <a href="https://coywolf.com">Coywolf</a>
+      </p>
+      <p>
+        Lists from <a href="https://github.com/dbohdan/classless-css">dbohdan</a
+        > and <a
+          href="https://github.com/swyxio/spark-joy/blob/master/README.md#drop-in-css-frameworks"
+          >swyx</a
+        >
+      </p>
+    </div>
+    <h2>List of elements</h2>
     <nav>
       <ul>
         <li><a href="#details">Details</a></li>
@@ -363,3 +386,11 @@ Preformatted text
     </p>
   </body>
 </html>
+
+<style>
+  .blurb {
+    outline: 1px solid black;
+    padding: 2rem;
+    text-align: center;
+  }
+</style>

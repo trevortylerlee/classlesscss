@@ -21,7 +21,8 @@ const themes = await Astro.glob("../pages/themes/*.md");
 <style>
   #nav {
     display: flex;
-    gap: 1rem;
+    flex-wrap: wrap;
+    gap: 0.75rem;
     justify-content: start;
   }
 </style>
@@ -33,9 +34,10 @@ const themes = await Astro.glob("../pages/themes/*.md");
     navLinks.forEach((link) => {
       if (link.getAttribute("href") === currentPath) {
         // @ts-ignore
-        link.style.outline = "1px dashed blue";
+        link.style.outline = "1px dashed red";
         // @ts-ignore
         link.style.fontWeight = "bold";
+        link.setAttribute("active", "");
       }
     });
   });
