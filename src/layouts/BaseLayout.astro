@@ -19,6 +19,8 @@ const { frontmatter } = Astro.props;
     <>
       <Nav />
       <h1><a href={frontmatter.link}>{frontmatter.title}</a></h1>
+      <code>{frontmatter.cdn}</code>
+      <h2>List of elements</h2>
       <ul>
         <li><a href="#example">Blog Post Example</a></li>
         <li><a href="#headings">Headings</a></li>
@@ -73,7 +75,8 @@ const { frontmatter } = Astro.props;
         <figure>
           <img
             src="/lotr.jpg"
-            alt="Lobby of the New Town Hall in Hanover"
+            alt="Ian McKellen (left) as Gandalf and Elijah Wood as Frodo in The Lord
+            of the Rings: The Fellowship of the Ring (2001)."
             id="potd"
           />
           <figcaption id="potd_caption">
