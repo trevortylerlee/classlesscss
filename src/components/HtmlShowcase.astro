@@ -1,0 +1,340 @@
+---
+import { themes } from "../data/themes";
+---
+
+<p id="current-theme-info" style="display:none;"></p>
+<script is:inline define:vars={{ themes }}>
+  (function () {
+    function updateThemeInfo() {
+      var slug = new URLSearchParams(window.location.search).get("theme");
+      var el = document.getElementById("current-theme-info");
+      if (!el) return;
+      if (!slug) {
+        el.style.display = "none";
+        el.innerHTML = "";
+        return;
+      }
+      var theme = themes.find(function (t) {
+        return t.slug === slug;
+      });
+      if (!theme) {
+        el.style.display = "none";
+        el.innerHTML = "";
+        return;
+      }
+      el.innerHTML =
+        'You are viewing <a href="' + theme.link + '">' + theme.title + "</a>";
+      el.style.display = "";
+    }
+
+    updateThemeInfo();
+
+    var origPushState = history.pushState;
+    history.pushState = function () {
+      origPushState.apply(this, arguments);
+      updateThemeInfo();
+    };
+  })();
+</script>
+
+<h2>List of elements</h2>
+<ul>
+  <li><a href="#headings">Headings</a></li>
+  <li><a href="#text">Text</a></li>
+  <li><a href="#links">Links</a></li>
+  <li><a href="#blockquote">Blockquote</a></li>
+  <li><a href="#lists">Lists</a></li>
+  <li><a href="#table">Table</a></li>
+  <li><a href="#image">Image</a></li>
+  <li><a href="#media">Audio and Video</a></li>
+  <li><a href="#form">Forms</a></li>
+  <li><a href="#details">Details</a></li>
+  <li><a href="#dialog">Dialog</a></li>
+  <li><a href="#code">Code</a></li>
+  <li><a href="#progress">Progress and Meter</a></li>
+  <li><a href="#hr">Horizontal Rule</a></li>
+</ul>
+<hr />
+
+<!-- Headings -->
+<h2 id="headings">
+  <a href="https://developer.mozilla.org/docs/Web/HTML/Element/Heading_Elements"
+    >Headings</a
+  >
+</h2>
+<h1>Heading 1</h1>
+<h2>Heading 2</h2>
+<h3>Heading 3</h3>
+<h4>Heading 4</h4>
+<h5>Heading 5</h5>
+<h6>Heading 6</h6>
+
+<!-- Text: paragraphs and inline formatting -->
+<h2 id="text">
+  <a href="https://developer.mozilla.org/docs/Web/HTML/Element/p">Text</a>
+</h2>
+<p>
+  This is a paragraph of text. Sometimes you want your text to be
+  <strong>strong</strong> and other times you want to put <em>emphasis</em> on it.
+  You can also <mark>highlight text</mark> to draw attention to it.
+</p>
+<p>
+  Inline elements include <small>small text</small>, superscript<sup>hi</sup>,
+  subscript<sub>bye</sub>,
+  <abbr title="abbreviations">abbr</abbr>, and
+  <a href="https://developer.mozilla.org/docs/Web/HTML/Element/dfn"
+    >defined terms</a
+  >
+  like <dfn>classless CSS</dfn> — a stylesheet that requires no class attributes.
+</p>
+
+<!-- Links -->
+<h2 id="links">
+  <a href="https://developer.mozilla.org/docs/Web/HTML/Element/a">Links</a>
+</h2>
+<p>
+  This is <a href="https://trevortylerlee.com">an inline link</a>. Links can
+  also be
+  <a href="https://trevortylerlee.com" target="_blank" rel="noopener noreferrer"
+    >opened in a new tab</a
+  >.
+</p>
+
+<!-- Blockquote -->
+<h2 id="blockquote">
+  <a href="https://developer.mozilla.org/docs/Web/HTML/Element/blockquote"
+    >Blockquote</a
+  >
+</h2>
+<blockquote>
+  <p>
+    "In a hole in the ground there lived a hobbit. Not a nasty, dirty, wet hole,
+    filled with the end of worms and an oozy smell, nor yet a dry, bare, sandy
+    hole with nothing to sit down on or eat: it was a hobbit-hole, and that
+    means comfort."
+  </p>
+  <footer>― J.R.R. Tolkien, <cite>The Hobbit</cite></footer>
+</blockquote>
+
+<!-- Lists -->
+<h2 id="lists">
+  <a href="https://developer.mozilla.org/docs/Web/HTML/Element/ul">Lists</a>
+</h2>
+<h3>Unordered List</h3>
+<ul>
+  <li>First item</li>
+  <li>Second item</li>
+  <li>Third item with a <a href="#">link</a></li>
+</ul>
+<h3>Ordered List</h3>
+<ol>
+  <li>First item</li>
+  <li>Second item</li>
+  <li>Third item</li>
+</ol>
+<h3>Description List</h3>
+<dl>
+  <dt>HTML</dt>
+  <dd>
+    The standard markup language for documents designed to be displayed in a web
+    browser.
+  </dd>
+  <dt>CSS</dt>
+  <dd>
+    A style sheet language used for describing the presentation of a document
+    written in HTML.
+  </dd>
+</dl>
+
+<!-- Table -->
+<h2 id="table">
+  <a href="https://developer.mozilla.org/docs/Web/HTML/Element/table">Table</a>
+</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Release Date</th>
+      <th>Director</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Episode IV – A New Hope</td>
+      <td>May 25, 1977</td>
+      <td>George Lucas</td>
+    </tr>
+    <tr>
+      <td>Episode V – The Empire Strikes Back</td>
+      <td>May 21, 1980</td>
+      <td>Irvin Kershner</td>
+    </tr>
+    <tr>
+      <td>Episode VI – Return of the Jedi</td>
+      <td>May 25, 1983</td>
+      <td>Richard Marquand</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- Image -->
+<h2 id="image">
+  <a href="https://developer.mozilla.org/docs/Web/HTML/Element/img">Image</a>
+</h2>
+<figure>
+  <img
+    src="/lotr.jpg"
+    alt="Ian McKellen (left) as Gandalf and Elijah Wood as Frodo in The Lord of the Rings: The Fellowship of the Ring (2001)."
+  />
+  <figcaption>
+    Ian McKellen as Gandalf and Elijah Wood as Frodo in
+    <cite>The Fellowship of the Ring</cite> (2001).
+  </figcaption>
+</figure>
+
+<!-- Audio and Video -->
+<h2 id="media">
+  <a href="https://developer.mozilla.org/docs/Web/HTML/Element/audio"
+    >Audio and Video</a
+  >
+</h2>
+<h3>Audio</h3>
+<audio controls src="/wilhelm.mp3"></audio>
+<h3>Video</h3>
+<video controls src="/sw.mp4" width="640" height="480"></video>
+
+<!-- Forms -->
+<h2 id="form">
+  <a href="https://developer.mozilla.org/docs/Web/HTML/Element/form">Forms</a>
+</h2>
+<form>
+  <fieldset>
+    <legend>Text Inputs</legend>
+    <p>
+      <label for="text-input">Text</label>
+      <input id="text-input" placeholder="Text input" type="text" />
+    </p>
+    <p>
+      <label for="email-input">Email</label>
+      <input id="email-input" placeholder="email@example.com" type="email" />
+    </p>
+    <p>
+      <label for="textarea-input">Textarea</label>
+      <textarea
+        id="textarea-input"
+        placeholder="Enter longer text here"
+        rows="4"></textarea>
+    </p>
+  </fieldset>
+  <fieldset>
+    <legend>Selection</legend>
+    <p>
+      <label for="select-input">Select</label>
+      <select id="select-input">
+        <option>Option 1</option>
+        <option>Option 2</option>
+        <option>Option 3</option>
+      </select>
+    </p>
+  </fieldset>
+  <fieldset>
+    <legend>Radio Buttons</legend>
+    <input type="radio" id="radio-1" name="radio" value="1" />
+    <label for="radio-1">Option 1</label><br />
+    <input type="radio" id="radio-2" name="radio" value="2" />
+    <label for="radio-2">Option 2</label><br />
+    <input type="radio" id="radio-3" name="radio" value="3" />
+    <label for="radio-3">Option 3</label>
+  </fieldset>
+  <fieldset>
+    <legend>Checkboxes</legend>
+    <input type="checkbox" id="cb-1" name="cb-1" value="1" />
+    <label for="cb-1">Option 1</label><br />
+    <input type="checkbox" id="cb-2" name="cb-2" value="2" />
+    <label for="cb-2">Option 2</label><br />
+    <input type="checkbox" id="cb-3" name="cb-3" value="3" />
+    <label for="cb-3">Option 3</label>
+  </fieldset>
+  <p><button type="button">Button</button></p>
+</form>
+
+<!-- Details -->
+<h2 id="details">
+  <a href="https://developer.mozilla.org/docs/Web/HTML/Element/details"
+    >Details</a
+  >
+</h2>
+<details>
+  <summary>Click to expand</summary>
+  <p>
+    The <code>&lt;details&gt;</code> element creates a disclosure widget that the
+    user can open and close. No JavaScript required.
+  </p>
+</details>
+
+<!-- Dialog -->
+<h2 id="dialog">
+  <a href="https://developer.mozilla.org/docs/Web/HTML/Element/dialog">Dialog</a
+  >
+</h2>
+<dialog id="favDialog">
+  <form method="dialog">
+    <p>This is a <code>&lt;dialog&gt;</code> modal window.</p>
+    <p><button>Close</button></p>
+  </form>
+</dialog>
+<button id="openDialog">Open Dialog</button>
+<script is:inline>
+  document.getElementById("openDialog")?.addEventListener("click", function () {
+    var dialog = document.getElementById("favDialog");
+    if (dialog && typeof dialog.showModal === "function") {
+      dialog.showModal();
+    }
+  });
+</script>
+
+<!-- Code -->
+<h2 id="code">
+  <a href="https://developer.mozilla.org/docs/Web/HTML/Element/code">Code</a>
+</h2>
+<p>
+  Inline code: <code>console.log("hello world")</code>
+</p>
+<h3>Preformatted Text</h3>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;title&gt;Hello&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;p&gt;Hello, world!&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<h3>Keyboard Input and Sample Output</h3>
+<p>Press <kbd>Ctrl</kbd> + <kbd>C</kbd> to copy text (Windows).</p>
+<p>Press <kbd>Cmd</kbd> + <kbd>C</kbd> to copy text (Mac).</p>
+<p>Sample output: <samp>File not found. Press F1 to continue</samp></p>
+
+<!-- Progress and Meter -->
+<h2 id="progress">
+  <a href="https://developer.mozilla.org/docs/Web/HTML/Element/progress"
+    >Progress and Meter</a
+  >
+</h2>
+<p>
+  <label for="progress-bar">Download progress:</label>
+  <progress id="progress-bar" value="32" max="100">32%</progress>
+</p>
+<p>
+  Tickets sold: <meter min="0" max="100" value="75"></meter> 75%
+</p>
+
+<!-- Horizontal Rule -->
+<h2 id="hr">
+  <a href="https://developer.mozilla.org/docs/Web/HTML/Element/hr"
+    >Horizontal Rule</a
+  >
+</h2>
+<p>A horizontal rule separates content:</p>
+<hr />
+<p>Content continues after the rule.</p>

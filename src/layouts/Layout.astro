@@ -1,0 +1,47 @@
+---
+import Nav from "../components/Nav.astro";
+import { themes } from "../data/themes";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚫</text></svg>"
+    />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <script is:inline define:vars={{ themes }}>
+      (function () {
+        var params = new URLSearchParams(window.location.search);
+        var slug = params.get("theme");
+        if (!slug) return;
+
+        var theme = themes.find(function (t) { return t.slug === slug; });
+        if (!theme) return;
+
+        var link = document.createElement("link");
+        link.id = "theme-stylesheet";
+        link.rel = "stylesheet";
+        link.href = theme.cdn;
+        if (theme.integrity) {
+          link.integrity = theme.integrity;
+          link.crossOrigin = "anonymous";
+        }
+        document.head.appendChild(link);
+      })();
+    </script>
+  </head>
+  <body>
+    <Nav />
+    <slot />
+  </body>
+</html>

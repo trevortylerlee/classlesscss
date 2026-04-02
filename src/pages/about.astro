@@ -1,0 +1,130 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="About">
+  <article>
+    <header>
+      <h1>Why I Built classlesscss.com</h1>
+      <p>
+        By <strong
+          ><a href="https://trevortylerlee.com">Trevor Tyler Lee</a></strong
+        >
+      </p>
+    </header>
+
+    <p>
+      There are a lot of classless CSS frameworks and comparing them is
+      annoying. I wanted a single page where I could flip through them all
+      against the same HTML.
+    </p>
+
+    <p>
+      That's what this site is. It renders a set of common HTML elements and
+      lets you switch themes from a dropdown. This <code>/about</code> page exists
+      so you can see how each theme handles a blog post.
+    </p>
+
+    <h2>Things You'll Notice</h2>
+
+    <p>
+      Spend a few minutes clicking through themes and you'll start to see some
+      differences. Some apply a <code>max-width</code> to the body and center the
+      content. Some have dark mode, some don't.
+    </p>
+
+    <h2>How It's Built</h2>
+
+    <p>
+      The site is built with <a href="https://astro.build">Astro</a>. Themes are
+      loaded dynamically from their CDNs based on a query parameter. The site
+      itself has no opinion on styling (except for the nav).
+    </p>
+
+    <pre><code>#nav &#123;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+&#125;
+
+.nav-left &#123;
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+&#125;
+
+.nav-right &#123;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+&#125;</code></pre>
+
+    <p>The content for this page looks like this:</p>
+    <pre><code>&lt;article&gt;
+  &lt;header&gt;
+    &lt;h1&gt;Why I Built classlesscss.com&lt;/h1&gt;
+    &lt;p&gt;
+      By &lt;strong&gt;
+        &lt;a href="https://trevortylerlee.com"&gt;Trevor Tyler Lee&lt;/a&gt;
+      &lt;/strong&gt;
+    &lt;/p&gt;
+  &lt;/header&gt;
+
+  &lt;p&gt;
+    There are a lot of classless CSS frameworks and comparing them is
+    annoying. I wanted a single page where I could flip through them all
+    against the same HTML.
+  &lt;/p&gt;
+
+  &lt;h2&gt;Things You'll Notice&lt;/h2&gt;
+
+  &lt;p&gt;
+    Spend a few minutes clicking through themes and you'll start to see some
+    differences. Some apply a &lt;code&gt;max-width&lt;/code&gt; to the body and center the
+    content. Some have dark mode, some don't.
+  &lt;/p&gt;
+
+  &lt;h2&gt;How It's Built&lt;/h2&gt;
+
+  &lt;p&gt;
+    The site is built with &lt;a href="https://astro.build"&gt;Astro&lt;/a&gt;. Themes are
+    loaded dynamically from their CDNs based on a query parameter. The site
+    itself has no opinion on styling (except for the nav).
+  &lt;/p&gt;
+&lt;/article&gt;</code></pre>
+
+    <p>If you were writing in markdown, it'd look like this:</p>
+    <pre><code># Why I Built classlesscss.com
+
+By **[Trevor Tyler Lee](https://trevortylerlee.com)**
+
+There are a lot of classless CSS frameworks and comparing them is
+annoying. I wanted a single page where I could flip through them all
+against the same HTML.
+
+## Things You'll Notice
+
+Spend a few minutes clicking through themes and you'll start to notice
+differences. Some apply a `max-width` to the body and center the
+content. Some style the `&lt;nav&gt;` element, some ignore it entirely.
+Some have dark mode, some don't.
+
+## How It's Built
+
+The site is built with [Astro](https://astro.build). Themes are
+loaded dynamically from their CDNs based on a query parameter. The site
+itself has no opinion on styling (except for the nav).</code></pre>
+
+    <h2>Why is Downstyler starred?</h2>
+    <p>
+      Because it's my favorite one so far (not affiliated). If you like that
+      default HTML feel, you can check out my <a
+        href="https://barebones.trevortylerlee.com"
+        >open‑source Astro theme, Astro Barebones</a
+      >.
+    </p>
+  </article>
+</Layout>

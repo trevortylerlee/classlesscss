@@ -1,47 +1,20 @@
-# Astro Starter Kit: Minimal
+# Why I Built classlesscss.com
 
-```sh
-npm create astro@latest -- --template minimal
-```
+By **[Trevor Tyler Lee](https://trevortylerlee.com)**
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+There are a lot of classless CSS frameworks and comparing them is
+annoying. I wanted a single page where I could flip through them all
+against the same HTML.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Things You'll Notice
 
-## 🚀 Project Structure
+Spend a few minutes clicking through themes and you'll start to notice
+differences. Some apply a `max-width` to the body and center the
+content. Some style the `<nav>` element, some ignore it entirely.
+Some have dark mode, some don't.
 
-Inside of your Astro project, you'll see the following folders and files:
+## How It's Built
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+The site is built with [Astro](https://astro.build). Themes are
+loaded dynamically from their CDNs based on a query parameter. The site
+itself has no opinion on styling (except for the nav).
