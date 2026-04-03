@@ -80,10 +80,6 @@ import { themes } from "../data/themes";
         link.id = "theme-stylesheet";
         link.rel = "stylesheet";
         link.href = theme.cdn;
-        if (theme.integrity) {
-          link.integrity = theme.integrity;
-          link.crossOrigin = "anonymous";
-        }
         document.head.appendChild(link);
       }
 
