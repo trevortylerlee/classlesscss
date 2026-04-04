@@ -145,7 +145,7 @@ export const themes: Theme[] = [
     link: "https://simplecss.org/",
   },
   {
-    title: "SPCSS",
+    title: "SPCSS ★",
     slug: "spcss",
     cdn: "https://cdn.jsdelivr.net/npm/spcss@0.9.0",
     link: "https://susam.github.io/spcss/",
