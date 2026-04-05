@@ -10,11 +10,7 @@ import { themes } from "../data/themes";
   <div class="nav-right">
     <select id="theme-select" aria-label="Select a CSS theme">
       <option value="">Select a theme</option>
-      {themes.map((theme) => (
-        <option value={theme.slug}>
-          {theme.title}
-        </option>
-      ))}
+      {themes.map((theme) => <option value={theme.slug}>{theme.title}</option>)}
     </select>
     <button id="random-theme" type="button">Random</button>
   </div>
@@ -69,7 +65,9 @@ import { themes } from "../data/themes";
       history.pushState(null, "", url.toString());
 
       var theme = newSlug
-        ? themes.find(function (t) { return t.slug === newSlug; })
+        ? themes.find(function (t) {
+            return t.slug === newSlug;
+          })
         : null;
 
       var oldLink = document.getElementById("theme-stylesheet");
@@ -79,7 +77,7 @@ import { themes } from "../data/themes";
         var link = document.createElement("link");
         link.id = "theme-stylesheet";
         link.rel = "stylesheet";
-        link.href = theme.cdn;
+        link.href = "/themes/" + theme.file;
         document.head.appendChild(link);
       }
 

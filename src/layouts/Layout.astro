@@ -31,7 +31,7 @@ const { title } = Astro.props;
         var link = document.createElement("link");
         link.id = "theme-stylesheet";
         link.rel = "stylesheet";
-        link.href = theme.cdn;
+        link.href = "/themes/" + theme.file;
         document.head.appendChild(link);
       })();
     </script>
